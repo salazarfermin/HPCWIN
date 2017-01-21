@@ -1,0 +1,24 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "Pemex_VNet2"
+    },
+    "vnetAddressPrefix": {
+      "value": "172.30.1.0/24"
+    },
+    "subnet1Name": {
+      "value": "PMX-172.30.1.0"
+    },
+    "subnet1Prefix": {
+      "value": "172.30.1.0/25"
+    },
+    "subnet2Name": {
+      "value": "GatewaySubnet"
+    },
+    "subnet2Prefix": {
+      "value": "172.30.1.248/29"
+    }
+  }
+}
