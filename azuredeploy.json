@@ -8,7 +8,8 @@
       "maxLength": 15,
       "metadata": {
         "description": "The HPC Pack cluster name. It must be unique in the location because it is also used as the public DNS name prefix for the cluster. For example, the public DNS name is '&lt;clustername&gt;.westus.cloudapp.azure.com' if the resource group location is 'West US'. It must contain between 3 and 15 characters with lowercase letters and numbers, and must start with a letter."
-      }
+      },
+      "defaultValue": "vwazuhpcd000"
     },
     "privateDomainName": {
       "type": "string",
@@ -19,7 +20,7 @@
     },
     "headNodeVMSize": {
       "type": "string",
-      "defaultValue": "Standard_D4_v2",
+      "defaultValue": "Standard_A9",
       "allowedValues": [
         "Standard_A3",
         "Standard_A4",
@@ -75,8 +76,7 @@
       "type": "string",
       "defaultValue": "ComputeNode",
       "allowedValues": [
-        "ComputeNode",
-        "ComputeNodeWithExcel"
+        "ComputeNode"
       ],
       "metadata": {
         "description": "The VM image of the compute nodes"
@@ -102,7 +102,7 @@
     },
     "computeNodeVMSize": {
       "type": "string",
-      "defaultValue": "Standard_D3_v2",
+      "defaultValue": "Standard_A9",
       "allowedValues": [
         "Standard_A1",
         "Standard_A2",
@@ -172,13 +172,15 @@
       "type": "string",
       "metadata": {
         "description": "Administrator user name for the virtual machines and the Active Directory domain."
-      }
+      },
+      "defaultValue": "HPCAdmin"
     },
     "adminPassword": {
       "type": "securestring",
       "metadata": {
         "description": "Administrator password for the virtual machines and the Active Directory domain"
-      }
+      },
+      "defaultValue": "..Pa$$w0rd.."
     },
     "headNodePostConfigScript": {
       "type": "string",
@@ -196,7 +198,7 @@
     }
   },
   "variables": {
-    "virtualNetworkName": "[concat(parameters('clusterName'), 'VNet')]",
+    "virtualNetworkName": "Pemex_VNet2",
     "storageAccountNamePrefix": "[toLower(concat('hpc', uniqueString(resourceGroup().id, toLower(parameters('clusterName')))))]",
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "[concat(parameters('clusterName'), '-PublicIP-HN')]",
@@ -206,11 +208,6 @@
         "publisher": "MicrosoftWindowsServerHPCPack",
         "offer": "WindowsServerHPCPack",
         "sku": "2012R2CN"
-      },
-      "ComputeNodeWithExcel": {
-        "publisher": "MicrosoftWindowsServerHPCPack",
-        "offer": "WindowsServerHPCPack",
-        "sku": "2012R2CNExcel"
       }
     },
     "currentComputeNodeImage": "[variables('computeNodeImages')[parameters('computeNodeImage')]]",
