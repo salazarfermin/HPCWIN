@@ -7,13 +7,13 @@
 
 #Login-AzureRmAccount -SubscriptionId $SubscriptionId;
 
-#New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location;
+New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location;
 
-#New-AzureRmResourceGroupDeployment -Name hpc-ctest-vnet -ResourceGroupName $ResourceGroupName -TemplateFile (Join-Path (Split-Path $myinvocation.mycommand.path) 'vnet\vnetdeploy.json') -TemplateParameterFile (Join-Path (Split-Path $myinvocation.mycommand.path) 'vnet\parameters.json') -Verbose;
+New-AzureRmResourceGroupDeployment -Name hpc-ctest-vnet -ResourceGroupName $ResourceGroupName -TemplateFile (Join-Path (Split-Path $myinvocation.mycommand.path) 'vnet\vnetdeploy.json') -TemplateParameterFile (Join-Path (Split-Path $myinvocation.mycommand.path) 'vnet\parameters.json') -Verbose;
 
-#New-AzureRmResourceGroupDeployment -Name hpc-ctest -ResourceGroupName $ResourceGroupName -TemplateFile (Join-Path (Split-Path $myinvocation.mycommand.path) 'azuredeploy.json') -Verbose -DeploymentDebugLogLevel All;
+New-AzureRmResourceGroupDeployment -Name hpc-ctest -ResourceGroupName $ResourceGroupName -TemplateFile (Join-Path (Split-Path $myinvocation.mycommand.path) 'azuredeploy.json') -Verbose -DeploymentDebugLogLevel All;
 
-Remove-AzureRmResourceGroup -Name $ResourceGroupName;
+#Remove-AzureRmResourceGroup -Name $ResourceGroupName;
 
 #Get-AzureRmNetworkInterface -Name '/subscriptions/a3031bbc-4497-4414-90df-e927b85922f9/resourcegroups/DCPNTI-GSPI-HPC/providers/Microsoft.Network/networkInterfaces/VWAZUHPCD000-nic24vxu3qcdzbky' -ResourceGroupName 'DCPNTI-GSPI-HPC';
 
